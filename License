@@ -1,0 +1,314 @@
+╔══════════════════════════════════════════════════════════════════╗
+║    MGOVL v2.0 — Mao Guanghui Open View License                  ║
+║    毛广辉开放查阅许可证 第2版                                      ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Work          : Photonic Logic Chip — 光影芯片
+Description   : https://github.com/maomaoati-coder/Photonic-Logic-Chip-
+Copyright     : © 2026 Mao Guanghui. All Rights Reserved.
+Repository    : https://github.com/maomaoati-coder/Photonic-Logic-Chip-
+Contact       : GitHub Issues → https://github.com/maomaoati-coder/Photonic-Logic-Chip-/issues  (subject: 'Authorization Inquiry')
+License       : MGOVL v2.0
+Effective     : 2026
+
+════════════════════════════════════════════════════════════════════
+
+PREAMBLE
+
+This License governs the use of the Work identified above.
+The Copyright Holder (Mao Guanghui) created this License to maximize
+the global visibility, reach, and attribution of this Work, while
+retaining full control over commercial exploitation and derivative use.
+
+This License is intentionally stricter than Creative Commons licenses
+in that it prohibits reproduction and adaptation even for
+non-commercial purposes, while explicitly encouraging citation,
+viewing, and sharing of the original link to maximize exposure.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 1 — DEFINITIONS
+
+1.1  "Work" means all content covered by this License, including but
+     not limited to: source code, documentation, papers, diagrams,
+     architecture designs, verification data, and any descriptions
+     thereof.
+
+1.2  "Copyright Holder" means Mao Guanghui, the sole original creator
+     of the Work.
+
+1.3  "You" means any individual or organization that accesses, reads,
+     or cites the Work.
+
+1.4  "Commercial Use" means any use intended for or directed towards
+     commercial advantage or monetary compensation, including but not
+     limited to: product integration, IP licensing, technology
+     transfer, tape-out for production, paid services, fundraising
+     presentations, investor pitches, and government grant applications
+     that use this Work as a technical basis.
+
+1.5  "Reproduce" means to copy, download, mirror, screenshot for
+     redistribution, or otherwise duplicate any substantial portion of
+     the Work in any medium or format.
+
+1.6  "Adapt" means to translate, modify, transform, remix, or create
+     any derivative work based on the Work.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 2 — RIGHTS GRANTED
+
+Subject to full compliance with this License, the Copyright Holder
+grants You the following rights worldwide, royalty-free:
+
+2.1  VIEW RIGHT
+     You may freely access and read the Work in its entirety.
+
+2.2  CITATION RIGHT
+     You may cite the Work in academic papers, research reports,
+     technical reviews, and media coverage, provided that you comply
+     with Article 3 (Attribution Requirements).
+
+2.3  SHARING RIGHT
+     You are encouraged to share the original repository link
+     (https://github.com/maomaoati-coder/Photonic-Logic-Chip-) to maximize exposure and discoverability.
+     Sharing original links is explicitly encouraged with no
+     restrictions.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 3 — ATTRIBUTION REQUIREMENTS (MANDATORY)
+
+When exercising any right granted under Article 2, You MUST:
+
+(a) Credit the original author:  Mao Guanghui
+(b) State the work title:        Photonic Logic Chip — 光影芯片
+(c) Provide the original URL:    https://github.com/maomaoati-coder/Photonic-Logic-Chip-
+(d) Reference this License:      MGOVL v2.0
+
+Recommended citation formats:
+
+  Academic (English):
+    Mao, Guanghui. Photonic Logic Chip — 光影芯片. 2026.
+    https://github.com/maomaoati-coder/Photonic-Logic-Chip-. Licensed under MGOVL v2.0.
+
+  BibTeX:
+    @misc{2026mao_work,
+      author    = {Mao, Guanghui},
+      title     = {Photonic Logic Chip — 光影芯片},
+      year      = {2026},
+      url       = {https://github.com/maomaoati-coder/Photonic-Logic-Chip-},
+      note      = {Licensed under MGOVL v2.0}
+    }
+
+  学术引用（中文）：
+    毛广辉. Photonic Logic Chip — 光影芯片[EB/OL]. 2026.
+    https://github.com/maomaoati-coder/Photonic-Logic-Chip-. 依据 MGOVL v2.0 许可证发布.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 4 — PROHIBITED ACTS
+
+The following acts are STRICTLY PROHIBITED without a separate written
+Commercial Authorization Agreement from the Copyright Holder:
+
+4.1  NO REPRODUCTION
+     You may not reproduce, copy, download for redistribution,
+     mirror-host, or systematically extract any substantial portion
+     of the Work in any medium or format.
+
+4.2  NO ADAPTATION
+     You may not modify, translate, adapt, transform, or create any
+     derivative work based on the Work, in whole or in part.
+
+4.3  NO COMMERCIAL USE
+     You may not use the Work or any portion thereof for any
+     commercial purpose. Prohibited commercial acts include but
+     are not limited to:
+     · Manufacturing or tape-out of chips based on this architecture
+     · Licensing the technical solution to any third party
+     · Integrating the Work's technology into commercial products,
+       services, or systems
+     · Using the Work in fundraising, investor roadshows, or
+       commercial pitches
+     · Applying for government subsidies, grants, or awards using
+       this Work as a technical contribution
+     · Providing paid consulting or technical services based on
+       this Work
+
+4.4  NO REMOVAL OF NOTICES
+     You may not remove, obscure, or alter any copyright notice,
+     license text, or author attribution contained in the Work.
+
+4.5  NO FALSE CLAIM OF AUTHORSHIP
+     You may not represent the Work as your own creation, or imply
+     that the Copyright Holder has endorsed or authorized your use
+     beyond what this License explicitly permits.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 5 — COMMERCIAL AUTHORIZATION
+
+5.1  Any act listed in Article 4 requires a separate written
+     Commercial Authorization Agreement signed by the Copyright
+     Holder (Mao Guanghui) prior to use.
+
+5.2  To request commercial authorization, contact:
+     GitHub Issues → https://github.com/maomaoati-coder/Photonic-Logic-Chip-/issues  (subject: 'Authorization Inquiry')
+
+5.3  Include in your request:
+     · Name and background of the requesting party
+     · Specific content or technology to be used
+     · Intended purpose and business model
+     · Expected scale and commercial benefit
+
+5.4  The Copyright Holder retains the absolute right to accept,
+     reject, or negotiate the terms, scope, and fees of any
+     commercial authorization request.
+
+5.5  Any authorized commercial use must be governed by a separate
+     written agreement that supersedes this License for the
+     specific authorized scope.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 6 — PRIOR ART PROTECTION
+
+6.1  The Work was first publicly disclosed in 2026 as recorded
+     in the repository commit history at:
+     https://github.com/maomaoati-coder/Photonic-Logic-Chip-
+
+6.2  This public disclosure record constitutes a timestamped
+     prior art statement for all technical solutions described
+     in the Work.
+
+6.3  No party may claim priority over the technical solutions
+     described herein with an effective date earlier than the
+     first public commit date of this repository.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 7 — DISCLAIMER OF WARRANTIES
+
+THE WORK IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY
+OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+ACCURACY, COMPLETENESS, OR NON-INFRINGEMENT.
+
+THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING
+OUT OF OR IN CONNECTION WITH THE USE, CITATION, OR DISTRIBUTION
+OF THE WORK, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 8 — TERM AND TERMINATION
+
+8.1  This License is effective from the moment You first access
+     the Work and remains in force until terminated.
+
+8.2  Your rights under this License terminate automatically and
+     irrevocably upon any breach of its terms, without notice
+     from the Copyright Holder.
+
+8.3  The Copyright Holder reserves the right to revise the terms
+     of this License for future versions of the Work. Previously
+     executed Commercial Authorization Agreements are unaffected
+     by such revisions.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 9 — GOVERNING LAW AND DISPUTE RESOLUTION
+
+9.1  GOVERNING LAW
+     This License shall be governed by and construed in accordance
+     with internationally recognized principles of intellectual
+     property law, including the Berne Convention for the Protection
+     of Literary and Artistic Works, the WIPO Copyright Treaty
+     (WCT), and the Agreement on Trade-Related Aspects of
+     Intellectual Property Rights (TRIPS Agreement).
+
+9.2  JURISDICTION
+     For disputes not resolved by arbitration, the parties consent
+     to the non-exclusive jurisdiction of courts in a mutually
+     agreed neutral jurisdiction. In the absence of such agreement,
+     disputes shall be submitted to the courts of the jurisdiction
+     where the Copyright Holder is domiciled at the time the
+     dispute arises.
+
+9.3  ARBITRATION
+     Any dispute arising out of or in connection with this License
+     that cannot be resolved by good-faith negotiation within
+     thirty (30) days shall be submitted to binding arbitration
+     under the rules of the International Chamber of Commerce (ICC)
+     or the World Intellectual Property Organization Arbitration
+     and Mediation Center (WIPO AMC), at the election of the
+     Copyright Holder. The language of arbitration shall be English.
+     The arbitral award shall be final and binding on both parties.
+
+9.4  NEGOTIATION FIRST
+     Before initiating arbitration or litigation, both parties
+     agree to attempt resolution through good-faith negotiation
+     for a minimum of thirty (30) days.
+
+════════════════════════════════════════════════════════════════════
+
+ARTICLE 10 — GENERAL PROVISIONS
+
+10.1 SEVERABILITY
+     If any provision of this License is held invalid or
+     unenforceable, such provision shall be modified to the
+     minimum extent necessary to make it valid and enforceable,
+     and the remaining provisions shall continue in full force.
+
+10.2 ENTIRE AGREEMENT
+     This License constitutes the entire agreement between You
+     and the Copyright Holder regarding the permitted use of the
+     Work, and supersedes all prior understandings, unless a
+     separate Commercial Authorization Agreement has been executed.
+
+10.3 NO WAIVER
+     Failure by the Copyright Holder to enforce any provision of
+     this License shall not constitute a waiver of the right to
+     enforce such provision in the future.
+
+10.4 LANGUAGE
+     This License is written primarily in English. In the event
+     of any conflict between the English text and any translation,
+     the English text shall prevail.
+
+════════════════════════════════════════════════════════════════════
+
+QUICK REFERENCE SUMMARY
+
+  ✅ PERMITTED (with attribution)
+     · View and read the Work freely
+     · Cite with: author + title + URL + "MGOVL v2.0"
+     · Share the original repository link — no restrictions
+
+  ❌ PROHIBITED (without Commercial Authorization Agreement)
+     · Reproduce or copy any substantial portion
+     · Adapt, modify, translate, or create derivatives
+     · Any commercial use of any kind
+
+  🔒 REQUIRES WRITTEN AUTHORIZATION FROM MAO GUANGHUI
+     · All commercial use
+     · Contact: GitHub Issues → https://github.com/maomaoati-coder/Photonic-Logic-Chip-/issues  (subject: 'Authorization Inquiry')
+
+════════════════════════════════════════════════════════════════════
+
+中文摘要 / Chinese Summary
+
+本许可证以英文为准。以下为中文摘要，仅供参考，不具有法律优先效力。
+
+许可：可自由查阅 · 可引用（须署名）· 可分享原始链接
+禁止：复制内容 · 改编衍生 · 一切商业使用
+商用：须与版权人（毛广辉）单独签署书面授权协议
+法律：适用《伯尔尼公约》《WIPO版权条约》《TRIPS协议》等
+争议：优先协商，协商不成提交ICC或WIPO仲裁，英语为仲裁语言
+
+════════════════════════════════════════════════════════════════════
+
+© 2026 Mao Guanghui. All Rights Reserved.
+MGOVL v2.0 — Mao Guanghui Open View License
+https://github.com/maomaoati-coder/Photonic-Logic-Chip-
