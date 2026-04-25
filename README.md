@@ -133,9 +133,10 @@ Academic citation and non-commercial research permitted with attribution.
 **Inventor:** Maomao (毛广辉) — Independent Hardware Architecture Inventor
 
 **Contact for licensing / joint development / investment:**
+
 📧 maomaoati@gmail.com
-🐙 Open an Issue in this repository
-💼 LinkedIn: search "Maomao 毛广辉 photonic logic chip"
+
+💼 LinkedIn: https://www.linkedin.com/in/广辉-毛-7657523ab
 
 **Open to:**
 - IP licensing negotiations
