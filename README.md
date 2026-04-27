@@ -1,5 +1,6 @@
 # Photonic Logic Chip — 光影芯片
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19801651.svg)](https://doi.org/10.5281/zenodo.19801651)
 [![License: MGOVL v2.0](https://img.shields.io/badge/License-MGOVL_v2.0-gold.svg)](./LICENSE)
 [![Claims: 28](https://img.shields.io/badge/Technical_Claims-28_Verified-brightgreen.svg)]()
 [![SHA256 Chain: v1–v10](https://img.shields.io/badge/SHA256_Chain-v1--v10-blue.svg)]()
