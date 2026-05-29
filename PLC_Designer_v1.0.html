@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLC Designer v1.0 — Photonic Logic EDA</title>
+<style>
+:root {
+  --gold: #C9A84C;
+  --bg: #020810;
+  --panel: #070c18;
+  --border: #1a2040;
+  --green: #00FFA3;
+  --cyan: #00E5FF;
+  --orange: #FF8C00;
+  --violet: #A855F7;
+  --red: #FF4466;
+  --text: #e0eaff;
+  --dim: #445577;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+  padding: 16px;
+}
+.header {
+  text-align: center;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.header h1 {
+  color: var(--gold);
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+.header p {
+  color: var(--dim);
+  font-size: 10px;
+  margin-top: 4px;
+  letter-spacing: 2px;
+}
+.input-section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.input-section label {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 6px;
+}
+textarea {
+  width: 100%;
+  height: 70px;
+  background: #000;
+  color: var(--green);
+  border: 1px solid var(--border);
+  padding: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+}
+.presets {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.preset-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  padding: 4px 8px;
+  font-size: 9px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+.preset-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.run-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  font-family: 'Courier New', monospace;
+}
+.run-btn:hover { background: #e0c060; }
+
+/* Canvas */
+#vizCanvas {
+  width: 100%;
+  height: 220px;
+  background: #000;
+  border: 1px solid var(--border);
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Results */
+.results {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.results-title {
+  color: var(--green);
+  font-size: 10px;
+  letter-spacing: 2px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.node-card {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+}
+.node-card:last-child { border-bottom: none; }
+.node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.node-type {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.node-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  font-size: 9px;
+}
+.metric {
+  background: #0a1020;
+  padding: 6px;
+  border-left: 2px solid var(--border);
+}
+.metric-label { color: var(--dim); margin-bottom: 2px; }
+.metric-value { color: #fff; font-size: 11px; }
+
+/* OPA Stream */
+.opa-section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.opa-title {
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.opa-table {
+  font-size: 9px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.opa-table th {
+  color: var(--dim);
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.opa-table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #0a1020;
+  color: var(--text);
+}
+.opa-table tr:last-child td { border-bottom: none; }
+
+/* Energy bar */
+.energy-bar-wrap {
+  background: #0a1020;
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.energy-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  color: var(--dim);
+  font-size: 9px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+.relay-badge {
+  background: #C9A84C22;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 9px;
+  padding: 1px 6px;
+  margin-left: 6px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>PLC DESIGNER v1.0</h1>
+  <p>PHOTONIC LOGIC COMPUTING — EDA TOOL</p>
+  <p>INVENTOR: MAOMAO (毛广辉) · DOI: 10.5281/zenodo.19801651</p>
+</div>
+
+<div class="input-section">
+  <label>LOGIC EXPRESSION INPUT</label>
+  <textarea id="exprInput">(A AND B) OR (NOT C)</textarea>
+  <div class="presets">
+    <button class="preset-btn" onclick="setExpr('(A AND B) OR (NOT C)')">PRESET 1</button>
+    <button class="preset-btn" onclick="setExpr('A AND (B OR C)')">PRESET 2</button>
+    <button class="preset-btn" onclick="setExpr('(NOT A) AND (B AND C)')">PRESET 3</button>
+    <button class="preset-btn" onclick="setExpr('(A XOR B) OR C')">PRESET 4</button>
+    <button class="preset-btn" onclick="setExpr('NOT (A AND B)')">PRESET 5</button>
+  </div>
+</div>
+
+<button class="run-btn" onclick="runCompile()">▶ COMPILE &amp; SIMULATE</button>
+
+<canvas id="vizCanvas"></canvas>
+
+<div class="results" id="resultsPanel">
+  <div class="results-title">WAITING FOR COMPILATION...</div>
+</div>
+
+<div class="opa-section" id="opaPanel">
+  <div class="opa-title">OPA INSTRUCTION STREAM</div>
+  <div style="color:var(--dim);font-size:10px;">Run compilation to generate OPA stream.</div>
+</div>
+
+<div class="footer">
+  VERIFIED PHYSICS · α_AND=0.8372 · α_OR=1.0000 · α_NOT=0.9500 · α_XOR=0.1766<br>
+  RELAY THRESHOLD τ=0.40 · SAFETY MARGIN σ=0.80 · ATTENUATION=0.95/hop<br>
+  github.com/maomaoati-coder/Photonic-Logic-Chip- · maomaoati@gmail.com
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// VERIFIED PHYSICS ENGINE
+// All constants from verified Colab experiments
+// ═══════════════════════════════════════════════════
+const ATTENUATION = 0.95;
+const RELAY_THRESHOLD = 0.40;
+const SIGMA = 0.80;
+const ALPHA = { AND:0.8372, OR:1.0000, NOT:0.9500, XOR:0.1766 };
+const CHANNELS = {
+  A:[5.0,75.0], B:[95.0,165.0],
+  C:[-165.0,-95.0], D:[-75.0,-5.0]
+};
+const GATE_COLORS = {
+  SRC:'#C9A84C', AND:'#00FFA3', OR:'#00E5FF',
+  NOT:'#FF8C00', XOR:'#A855F7', SINK:'#FF4466'
+};
+
+function encodeV8(ch, val) {
+  const [zs, ze] = CHANNELS[ch];
+  const w = (ze - zs) / 8;
+  return +(zs + (val + 0.5) * w).toFixed(3);
+}
+
+function vec(a) {
+  const r = a * Math.PI / 180;
+  return [Math.cos(r), Math.sin(r)];
+}
+
+function angleOf(v) {
+  const mag = Math.sqrt(v[0]*v[0]+v[1]*v[1]);
+  if (mag < 1e-9) return null;
+  return +(Math.atan2(v[1],v[0]) * 180/Math.PI).toFixed(2);
+}
+
+function addVecs(va, ea, vb, eb) {
+  return [va[0]*ea+vb[0]*eb, va[1]*ea+vb[1]*eb];
+}
+
+function AND_gate(a, b, ea, eb) {
+  if (a===null||b===null) return [null,0];
+  const v = addVecs(vec(a),ea,vec(b),eb);
+  const mag = Math.sqrt(v[0]*v[0]+v[1]*v[1]);
+  const eout = Math.min(mag,(ea+eb)/2);
+  if (mag<0.01) return [+((a+90)%360-180).toFixed(2), +eout.toFixed(4)];
+  return [angleOf(v), +eout.toFixed(4)];
+}
+
+function OR_gate(a, b, ea, eb) {
+  if (a===null) return [b, eb];
+  if (b===null) return [a, ea];
+  const v = addVecs(vec(a),ea,vec(b),eb);
+  return [angleOf(v), +((ea+eb)/2).toFixed(4)];
+}
+
+function NOT_gate(a, e) {
+  if (a===null) return [null,0];
+  const v = vec(a);
+  return [angleOf([-v[0],-v[1]]), +(e*ATTENUATION).toFixed(4)];
+}
+
+function XOR_gate(a, b, ea, eb) {
+  const [ab, eab] = AND_gate(a,b,ea,eb);
+  const [aob, eaob] = OR_gate(a,b,ea,eb);
+  if (ab===null) return [aob,eaob];
+  const [nab, enab] = NOT_gate(ab, eab);
+  return AND_gate(aob,nab,eaob,enab);
+}
+
+// N_max safe cascade depth
+function nMaxSafe(gtype) {
+  const ae = ALPHA[gtype]*ATTENUATION;
+  if (ae>=1||ae<=0) return 999;
+  return Math.floor(SIGMA*Math.log(RELAY_THRESHOLD)/Math.log(ae));
+}
+
+// ═══════════════════════════════════════════════════
+// EXPRESSION PARSER
+// ═══════════════════════════════════════════════════
+function parseExpr(expr) {
+  expr = expr.trim();
+  if (expr.startsWith('(')&&expr.endsWith(')')) {
+    let depth=0, ok=true;
+    for (let i=0;i<expr.length;i++) {
+      if(expr[i]=='(') depth++;
+      else if(expr[i]==')') depth--;
+      if(depth==0&&i<expr.length-1){ok=false;break;}
+    }
+    if(ok) expr=expr.slice(1,-1).trim();
+  }
+  const up = expr.toUpperCase();
+  if (up.startsWith('NOT ')) return ['NOT', parseExpr(expr.slice(4))];
+
+  let depth=0;
+  for (let i=expr.length-1;i>=0;i--) {
+    if(expr[i]==')') depth++;
+    else if(expr[i]=='(') depth--;
+    if(depth==0&&expr.slice(i).toUpperCase().startsWith(' OR '))
+      return ['OR',parseExpr(expr.slice(0,i)),parseExpr(expr.slice(i+4))];
+  }
+  depth=0;
+  for (let i=expr.length-1;i>=0;i--) {
+    if(expr[i]==')') depth++;
+    else if(expr[i]=='(') depth--;
+    if(depth==0&&expr.slice(i).toUpperCase().startsWith(' AND '))
+      return ['AND',parseExpr(expr.slice(0,i)),parseExpr(expr.slice(i+5))];
+  }
+  depth=0;
+  for (let i=expr.length-1;i>=0;i--) {
+    if(expr[i]==')') depth++;
+    else if(expr[i]=='(') depth--;
+    if(depth==0&&expr.slice(i).toUpperCase().startsWith(' XOR '))
+      return ['XOR',parseExpr(expr.slice(0,i)),parseExpr(expr.slice(i+5))];
+  }
+  return ['VAR', expr.trim()];
+}
+
+// ═══════════════════════════════════════════════════
+// GRAPH BUILDER
+// ═══════════════════════════════════════════════════
+let nodeCounter=0;
+let nodes=[], edges=[], angleMap={};
+
+function buildGraph(tree) {
+  const kind=tree[0];
+  if (kind==='VAR') {
+    const v=tree[1];
+    const id='SRC_'+(++nodeCounter);
+    if(!(v in angleMap)) angleMap[v]=30*(Object.keys(angleMap).length+1);
+    nodes.push({id,type:'SRC',label:v,angle:angleMap[v],energy:1.0});
+    return id;
+  }
+  if (kind==='NOT') {
+    const cid=buildGraph(tree[1]);
+    const id='NOT_'+(++nodeCounter);
+    nodes.push({id,type:'NOT',label:'NOT',hops:2});
+    edges.push({from:cid,to:id});
+    return id;
+  }
+  if (['AND','OR','XOR'].includes(kind)) {
+    const lid=buildGraph(tree[1]);
+    const rid=buildGraph(tree[2]);
+    const id=kind+'_'+(++nodeCounter);
+    nodes.push({id,type:kind,label:kind,hops:2});
+    edges.push({from:lid,to:id});
+    edges.push({from:rid,to:id});
+    return id;
+  }
+}
+
+function predecessors(nid) {
+  return edges.filter(e=>e.to===nid).map(e=>e.from);
+}
+
+function topoSort() {
+  const visited=new Set(), order=[];
+  const nids=nodes.map(n=>n.id);
+  function dfs(n) {
+    if(visited.has(n)) return;
+    visited.add(n);
+    predecessors(n).forEach(dfs);
+    order.push(n);
+  }
+  nids.forEach(dfs);
+  return order;
+}
+
+// ═══════════════════════════════════════════════════
+// EXECUTE
+// ═══════════════════════════════════════════════════
+function execute() {
+  const nmap={};
+  nodes.forEach(n=>nmap[n.id]=n);
+  const aout={}, eout={};
+  const relayLog=[];
+
+  topoSort().forEach(nid=>{
+    const node=nmap[nid];
+    const preds=predecessors(nid);
+    const ntype=node.type;
+
+    if(ntype==='SRC') {
+      aout[nid]=node.angle;
+      eout[nid]=node.energy;
+    } else if(ntype==='NOT') {
+      if(preds.length>0) {
+        const p=preds[0];
+        const hops=node.hops||1;
+        let ein=eout[p]*(ATTENUATION**hops);
+        let relay=false;
+        if(ein<RELAY_THRESHOLD){ein=1.0;relay=true;relayLog.push(nid);}
+        const [a,e]=NOT_gate(aout[p],ein);
+        aout[nid]=a; eout[nid]=e;
+        node.relay=relay;
+      }
+    } else if(['AND','OR','XOR'].includes(ntype)) {
+      if(preds.length>=2) {
+        const [p1,p2]=preds;
+        const hops=node.hops||1;
+        let ea=eout[p1]*(ATTENUATION**hops);
+        let eb=eout[p2]*(ATTENUATION**hops);
+        let relay=false;
+        if(ea<RELAY_THRESHOLD){ea=1.0;relay=true;}
+        if(eb<RELAY_THRESHOLD){eb=1.0;relay=true;}
+        if(relay) relayLog.push(nid);
+        let a,e;
+        if(ntype==='AND') [a,e]=AND_gate(aout[p1],aout[p2],ea,eb);
+        else if(ntype==='OR') [a,e]=OR_gate(aout[p1],aout[p2],ea,eb);
+        else [a,e]=XOR_gate(aout[p1],aout[p2],ea,eb);
+        aout[nid]=a; eout[nid]=e;
+        node.relay=relay;
+      }
+    } else if(ntype==='SINK') {
+      if(preds.length>0) {
+        aout[nid]=aout[preds[0]];
+        eout[nid]=eout[preds[0]];
+      }
+    }
+    node.resultAngle=aout[nid]??null;
+    node.resultEnergy=+(eout[nid]??0).toFixed(4);
+  });
+  return {aout,eout,relayLog};
+}
+
+// ═══════════════════════════════════════════════════
+// OPA STREAM
+// ═══════════════════════════════════════════════════
+function generateOPA() {
+  const opcMap={SRC:0,AND:4,OR:5,NOT:6,XOR:14,SINK:0};
+  return nodes.map((n,t)=>{
+    const a=n.resultAngle??0;
+    const e=n.resultEnergy??0;
+    const opc=opcMap[n.type]??0;
+    return {
+      t, node:n.id, type:n.type,
+      theta_out:a, energy:e,
+      theta_A:encodeV8('A',opc%8),
+      theta_B:encodeV8('B',Math.min(Math.floor(Math.abs(a)/45),7)),
+      theta_C:encodeV8('C',Math.min(Math.floor(e*7),7)),
+      theta_D:encodeV8('D',t%8),
+    };
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// VISUALIZE
+// ═══════════════════════════════════════════════════
+function drawCanvas() {
+  const canvas=document.getElementById('vizCanvas');
+  const W=canvas.width=canvas.offsetWidth;
+  const H=canvas.height=220;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#000';
+  ctx.fillRect(0,0,W,H);
+
+  if(nodes.length===0) return;
+
+  // Assign positions by layer
+  const layerOf={SRC:0,NOT:1,AND:1,OR:1,XOR:1,SINK:3};
+  const layerCnt={};
+  const pos={};
+  nodes.forEach(n=>{
+    const l=layerOf[n.type]??2;
+    const preds=predecessors(n.id);
+    const hasGatePred=preds.some(p=>{
+      const pn=nodes.find(x=>x.id===p);
+      return pn&&pn.type!=='SRC';
+    });
+    const layer=hasGatePred?2:l;
+    if(!(layer in layerCnt)) layerCnt[layer]=0;
+    const idx=layerCnt[layer]++;
+    pos[n.id]={x:layer*(W*0.28)+40, y:30+idx*55};
+  });
+
+  // Draw edges
+  edges.forEach(e=>{
+    if(!pos[e.from]||!pos[e.to]) return;
+    const p1=pos[e.from], p2=pos[e.to];
+    const fn=nodes.find(x=>x.id===e.from);
+    const col=GATE_COLORS[fn?.type]??'#334488';
+    ctx.beginPath();
+    ctx.strokeStyle=col+'88';
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([4,3]);
+    const mx=(p1.x+p2.x)/2;
+    ctx.moveTo(p1.x,p1.y);
+    ctx.bezierCurveTo(mx,p1.y,mx,p2.y,p2.x,p2.y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  // Draw nodes
+  nodes.forEach(n=>{
+    if(!pos[n.id]) return;
+    const {x,y}=pos[n.id];
+    const col=GATE_COLORS[n.type]??'#888';
+    const e=n.resultEnergy??0;
+
+    // Glow
+    ctx.shadowColor=col;
+    ctx.shadowBlur=12;
+    ctx.beginPath();
+    ctx.arc(x,y,18,0,Math.PI*2);
+    ctx.fillStyle=col+'22';
+    ctx.fill();
+    ctx.strokeStyle=col;
+    ctx.lineWidth=1.5;
+    ctx.stroke();
+    ctx.shadowBlur=0;
+
+    // Energy arc
+    ctx.beginPath();
+    ctx.arc(x,y,18,-Math.PI/2,-Math.PI/2+Math.PI*2*e);
+    ctx.strokeStyle=e>0.7?'#00FFA3':e>0.4?'#FF8C00':'#FF4466';
+    ctx.lineWidth=3;
+    ctx.stroke();
+
+    // Label
+    ctx.fillStyle=col;
+    ctx.font='bold 8px Courier New';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText(n.type.slice(0,3),x,y);
+
+    // Angle
+    ctx.fillStyle=col+'aa';
+    ctx.font='7px Courier New';
+    ctx.fillText(
+      n.resultAngle!==null&&n.resultAngle!==undefined
+        ? n.resultAngle+'°' : '—',
+      x, y+26);
+
+    // Energy
+    const ecol=e>0.7?'#00FFA3':e>0.4?'#FF8C00':'#FF4466';
+    ctx.fillStyle=ecol;
+    ctx.fillText('E='+e.toFixed(2),x,y-26);
+
+    // Relay marker
+    if(n.relay) {
+      ctx.fillStyle='#C9A84C';
+      ctx.font='bold 8px Courier New';
+      ctx.fillText('⚡',x+22,y-18);
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER RESULTS
+// ═══════════════════════════════════════════════════
+function renderResults(expr, relayLog) {
+  const panel=document.getElementById('resultsPanel');
+  let html=`<div class="results-title">COMPILATION RESULTS — ${expr}</div>`;
+
+  nodes.forEach(n=>{
+    const col=GATE_COLORS[n.type]??'#888';
+    const e=n.resultEnergy??0;
+    const ecol=e>0.7?'#00FFA3':e>0.4?'#FF8C00':'#FF4466';
+    const relayBadge=n.relay?'<span class="relay-badge">⚡ RELAY</span>':'';
+    const nm=nMaxSafe(n.type);
+
+    html+=`<div class="node-card">
+      <div class="node-header">
+        <span class="node-type" style="background:${col}22;color:${col};border:1px solid ${col}">
+          ${n.type}
+        </span>
+        <span style="color:var(--dim);font-size:9px">${n.id}</span>
+        ${relayBadge}
+      </div>
+      <div class="node-metrics">
+        <div class="metric">
+          <div class="metric-label">θ OUT</div>
+          <div class="metric-value" style="color:${col}">
+            ${n.resultAngle!==null&&n.resultAngle!==undefined?n.resultAngle+'°':'—'}
+          </div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">ENERGY</div>
+          <div class="metric-value" style="color:${ecol}">${e.toFixed(4)}</div>
+          <div class="energy-bar-wrap">
+            <div class="energy-bar" style="width:${(e*100).toFixed(1)}%;background:${ecol}"></div>
+          </div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">N_MAX SAFE</div>
+          <div class="metric-value" style="color:var(--dim)">
+            ${ALPHA[n.type]?nm+' gates':'—'}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  // Summary
+  const sink=nodes.find(n=>n.type==='SINK');
+  if(sink) {
+    const e=sink.resultEnergy??0;
+    const ecol=e>0.7?'#00FFA3':e>0.4?'#FF8C00':'#FF4466';
+    html+=`<div style="margin-top:10px;padding:10px;background:#0a1020;border-left:3px solid var(--gold)">
+      <div style="color:var(--gold);font-size:10px;margin-bottom:6px">FINAL OUTPUT</div>
+      <div style="font-size:12px">
+        θ_out = <span style="color:var(--gold)">${sink.resultAngle??'—'}°</span>
+        &nbsp;&nbsp;
+        E = <span style="color:${ecol}">${e.toFixed(4)}</span>
+        &nbsp;&nbsp;
+        RELAY nodes: <span style="color:#C9A84C">${relayLog.length}</span>
+      </div>
+    </div>`;
+  }
+
+  panel.innerHTML=html;
+}
+
+function renderOPA() {
+  const opa=generateOPA();
+  const panel=document.getElementById('opaPanel');
+  let html=`<div class="opa-title">OPA INSTRUCTION STREAM (${opa.length} instructions)</div>
+  <table class="opa-table">
+    <tr>
+      <th>T</th><th>TYPE</th><th>θ_OUT</th>
+      <th>θ_A</th><th>θ_B</th><th>θ_C</th><th>θ_D</th>
+    </tr>`;
+  opa.forEach(inst=>{
+    const col=GATE_COLORS[inst.type]??'#888';
+    html+=`<tr>
+      <td style="color:var(--dim)">${inst.t}</td>
+      <td style="color:${col}">${inst.type}</td>
+      <td style="color:${col}">${inst.theta_out}°</td>
+      <td style="color:#334488">${inst.theta_A}°</td>
+      <td style="color:#334488">${inst.theta_B}°</td>
+      <td style="color:#334488">${inst.theta_C}°</td>
+      <td style="color:#334488">${inst.theta_D}°</td>
+    </tr>`;
+  });
+  html+='</table>';
+  panel.innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════
+// MAIN
+// ═══════════════════════════════════════════════════
+function runCompile() {
+  const expr=document.getElementById('exprInput').value.trim();
+  if(!expr) return;
+
+  // Reset
+  nodes=[]; edges=[]; angleMap={};
+  nodeCounter=0;
+
+  try {
+    const tree=parseExpr(expr);
+    const rootId=buildGraph(tree);
+    const sinkId='SINK_'+(++nodeCounter);
+    nodes.push({id:sinkId,type:'SINK',label:'OUT',hops:1});
+    edges.push({from:rootId,to:sinkId});
+    const {relayLog}=execute();
+    drawCanvas();
+    renderResults(expr,relayLog);
+    renderOPA();
+  } catch(err) {
+    document.getElementById('resultsPanel').innerHTML=
+      `<div style="color:#FF4466;font-size:11px">
+        PARSE ERROR: ${err.message}<br>
+        Please check your expression syntax.
+      </div>`;
+  }
+}
+
+function setExpr(e) {
+  document.getElementById('exprInput').value=e;
+  runCompile();
+}
+
+// Auto-run on load
+window.onload=()=>runCompile();
+window.onresize=()=>{ if(nodes.length>0) drawCanvas(); };
+</script>
+</body>
+</html>
