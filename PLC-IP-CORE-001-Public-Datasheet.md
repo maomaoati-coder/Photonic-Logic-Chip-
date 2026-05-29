@@ -36,6 +36,14 @@ The core enforces a **Deterministic Sovereign Zone** at the physical logic bound
 * **Phase Healer Closed-Loop**: Proprietary dynamic phase recovery. Real-time compensation of wave distortion across cascaded logical structures using adaptive convergence tracking.
 * **RELAY Structural Isolation**: Autonomous physical failure and intrusion isolation. If external structural boundary modification or multi-core compromise exceeds the safety threshold, the affected array sectors automatically enters isolation mode, sealing data flow permanently via phase-cancellation self-destruction.
 
+### 2.2 Cascade Integrity & Optical Interconnect Constraints
+To counter cumulative insertion loss and maintain signal integrity (3R boundaries) without digital regeneration at every stage, the PLC architecture enforces strict behavioral constraints on logical depth before invoking an active RELAY boost:
+* **Max Cascaded Logical Depth (Standard Target)**:
+  * **AND Formulation**: Max 3 stages cascaded.
+  * **OR Formulation**: Max 14 stages cascaded.
+  * **NOT Formulation**: Max 7 stages cascaded.
+  * **XOR Formulation**: 0 stages cascaded (Enforces immediate active RELAY buffer realignment).
+
 ---
 
 ## 3. Top-Level Pin and Interface Definitions (TSV-P Standard)
