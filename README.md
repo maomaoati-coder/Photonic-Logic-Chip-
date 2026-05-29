@@ -11,6 +11,13 @@
 
 ---
 
+## 🔧 Live Demo
+
+▶ **[Open PLC Designer v1.0 in Browser](https://maomaoati-coder.github.io/Photonic-Logic-Chip-/index.html)**
+
+No installation required. Works on any device.
+
+
 ## What Is This?
 
 The **Photonic Logic Chip (光影芯片)** is a breakthrough computing paradigm independently invented by **Maomao (毛广辉)**.
