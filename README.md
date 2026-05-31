@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19801651.svg)](https://doi.org/10.5281/zenodo.19801651)
 [![License: MGOVL v2.0](https://img.shields.io/badge/License-MGOVL_v2.0-gold.svg)](./LICENSE)
 [![Claims: 28](https://img.shields.io/badge/Technical_Claims-28_Verified-brightgreen.svg)]()
-[![SHA256 Chain: v1–v10](https://img.shields.io/badge/SHA256_Chain-v1--v10-blue.svg)]()
+[![SHA256 Chain: v1–v12](https://img.shields.io/badge/SHA256_Chain-v1--v12-blue.svg)]()
 [![Prior Art: GitHub Timestamped](https://img.shields.io/badge/Prior_Art-GitHub_Timestamped-orange.svg)]()
 
 > **Logic functions are not etched into matter — they live in the interference topology of an optical field.**
@@ -87,7 +87,8 @@ All claims verified via Python/NumPy on Google Colab. FDTD Maxwell-equation simu
 | v8 | 24    | `667afc2edacdc6c4adae57a252bd1a98c5fa410ac29118b7204ef2ba200c0059` |
 | v9 | 25–26 | `f79d82c5983c945422047903b1630738b545e2b79a7f823ad728e903640698a0` |
 | v10 | 27–28 | `1914f976313835cb56495cc08fa1b12907414c9f4378255f29e31e0f5a9e6fdf` |
-
+| v11 | 29–30 |`71558350f790d829a6c12ab9b52045aacc9232e9351477625f3dcb931ccfa45e` |
+| v12 | 31 | `0559a408dc78f47874c70c71577be5e0821845a64fe270046f6caad222e9a7b7` |
 ---
 
 
