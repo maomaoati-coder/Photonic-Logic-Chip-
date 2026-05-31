@@ -155,5 +155,5 @@ Academic citation and non-commercial research permitted with attribution.
 
 ---
 
-*Photonic Logic Chip · 光影芯片 · 28 Claims · v1–v10 · 2026*
+*Photonic Logic Chip · 光影芯片 · 31 Claims · v1–v12 · 2026*
 *"An interference fringe is a logic gate."*
