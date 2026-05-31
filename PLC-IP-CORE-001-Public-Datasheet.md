@@ -11,7 +11,7 @@
 | **Interface Standard** | TSV-P (Photonic Through-Silicon Via) | PLC-STD-001 § 32 |
 | **Instruction Set** | SIS v1.0 (Sovereign Instruction Set) | PLC-STD-001 § 8 |
 | **Security Class** | Sovereign-PUF + Blind Compute + Sharding | Active Topology Defenses |
-| **Prior Art Record** | SHA256 chain v1-v10 Timestamped | CERN DOI: 10.5281/zenodo.19801651 |
+| **Prior Art Record** | SHA256 chain v1-v12 Timestamped | CERN DOI: 10.5281/zenodo.19801651 |
 
 ---
 
